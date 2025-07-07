@@ -1,0 +1,6 @@
+{
+  "name": "λ-Morpher",
+  "description": "A tool that provides a visceral, kinetic, and unforgettable experience for understanding Java lambda expressions by animating the transformation from verbose anonymous classes to elegant lambdas.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}

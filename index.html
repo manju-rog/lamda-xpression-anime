@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>λ-Morpher</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Fira Code', monospace;
+        background-color: #0d0d1a; /* Even darker indigo for base */
+      }
+      .font-fira {
+        font-family: 'Fira Code', monospace;
+      }
+      .glow-cyan {
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.7), 0 0 10px rgba(0, 255, 255, 0.5), 0 0 15px rgba(0, 255, 255, 0.3);
+      }
+      .glow-magenta {
+        text-shadow: 0 0 5px rgba(255, 0, 255, 0.7), 0 0 10px rgba(255, 0, 255, 0.5), 0 0 15px rgba(255, 0, 255, 0.3);
+      }
+      .glow-green {
+        text-shadow: 0 0 5px rgba(0, 255, 0, 0.7), 0 0 10px rgba(0, 255, 0, 0.5), 0 0 15px rgba(0, 255, 0, 0.3);
+      }
+      .glow-red {
+        text-shadow: 0 0 5px rgba(255, 0, 0, 0.7), 0 0 10px rgba(255, 0, 0, 0.5), 0 0 15px rgba(255, 0, 0, 0.3);
+      }
+      .grid-background {
+        background-color: #101021;
+        background-image:
+          linear-gradient(rgba(0, 150, 255, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 150, 255, 0.1) 1px, transparent 1px);
+        background-size: 3rem 3rem;
+        animation: pan-grid 20s linear infinite;
+      }
+      @keyframes pan-grid {
+        0% { background-position: 0 0; }
+        100% { background-position: 3rem 3rem; }
+      }
+      .character-shatter {
+        display: inline-block;
+        transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+      }
+      .editor-caret {
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+      .scanline {
+        position: absolute;
+        top: 0;
+        left: -10%;
+        width: 5px;
+        height: 100%;
+        background-color: rgba(255, 0, 0, 0.7);
+        box-shadow: 0 0 10px red;
+        animation: scan 0.5s ease-out forwards;
+      }
+      @keyframes scan {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(300%); opacity: 0; }
+      }
+      .final-glow {
+        animation: final-glow-anim 1s ease-in-out forwards;
+      }
+      @keyframes final-glow-anim {
+        0% { text-shadow: 0 0 5px rgba(0, 255, 0, 0.7), 0 0 10px rgba(0, 255, 0, 0.5); }
+        50% { text-shadow: 0 0 15px rgba(40, 255, 40, 1), 0 0 25px rgba(40, 255, 40, 0.8); }
+        100% { text-shadow: 0 0 5px rgba(0, 255, 0, 0.7), 0 0 10px rgba(0, 255, 0, 0.5); }
+      }
+      .desc-tooltip {
+        position: relative;
+        cursor: help;
+      }
+      .desc-tooltip .desc-tooltip-text {
+        visibility: hidden;
+        width: 280px;
+        background-color: #1a1a3d;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -140px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        border: 1px solid #6366f1;
+      }
+      .desc-tooltip:hover .desc-tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+      .animate-fade-in {
+        animation: fade-in 0.5s ease-out forwards;
+      }
+      @keyframes fade-in {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
